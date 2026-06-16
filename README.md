@@ -1,11 +1,3 @@
-> ⚠ **Security model.** This repository ships a **public demo build**
-> with placeholder risklists and demo-grade thresholds. Real
-> deployments override these via a gitignored `private/` directory.
-> See [`SECURITY.md`](./SECURITY.md) for the full public/private
-> boundary before forking or deploying.
-
----
-
 # AgentSentinel
 ### A reusable security & risk-assessment Skill for the Pharos AI-Agent economy
 
