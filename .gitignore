@@ -21,6 +21,7 @@ typechain-types/
 # ----------------------------------------------------------------------
 # Block ALL files in private/ ...
 private/**
+private/
 
 # ... but allow these public-safe items so the project ships ready-to-run:
 !private/README.md
