@@ -1,0 +1,30 @@
+{
+  "name": "agent-sentinel",
+  "version": "1.0.0",
+  "description": "Pharos AgentSentinel — security & risk-assessment skill for AI agents",
+  "type": "commonjs",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "tsc -p .",
+    "postbuild": "node -e \"require('fs').writeFileSync('dist/package.json', JSON.stringify({type:'commonjs'}, null, 2))\"",
+    "test": "tsx tests/index.test.ts",
+    "start": "tsx src/server.ts",
+    "demo": "tsx demo/safeSwapAgent.ts",
+    "compile": "hardhat compile",
+    "deploy:pharos": "hardhat run scripts/deploy.ts --network pharosTestnet",
+    "deploy:local": "hardhat run scripts/deploy.ts --network hardhat"
+  },
+  "keywords": ["pharos", "ai-agent", "skill", "security", "risk", "kyt"],
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@types/node": "^20.11.30",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.2",
+    "hardhat": "^2.22.10",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.1",
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "_comment": "PUBLIC DEMO DEFAULTS. Do NOT use these in production. See SECURITY.md.",
+  "version": "1.0.0-demo",
+  "policy_weights": {
+    "_comment": "Indicative ratios shown in references/modules.md. Real weights live in private config.",
+    "strict":     { "prompt": 0.25, "chain": 0.35, "behavior": 0.20, "compliance": 0.20 },
+    "balanced":   { "prompt": 0.20, "chain": 0.35, "behavior": 0.25, "compliance": 0.20 },
+    "permissive": { "prompt": 0.15, "chain": 0.30, "behavior": 0.25, "compliance": 0.30 }
+  },
+  "policy_thresholds": {
+    "_comment": "Demo bands. Production overrides via private/thresholds.json.",
+    "strict":     { "warn": 30, "block": 60 },
+    "balanced":   { "warn": 40, "block": 70 },
+    "permissive": { "warn": 50, "block": 80 }
+  },
+  "risklists": {
+    "_comment": "Obvious placeholder addresses. Replace via private/risklists/*.json in production.",
+    "honeypots": [
+      "0xDEADBEEFdeadbeefDEADBEEFdeadbeefDEADBEEF"
+    ],
+    "mixers": [
+      "0x000000000000000000000000000000000000dEaD"
+    ],
+    "sanctions": [
+      "0x7F367cC41522cE07553e823bf3be79A889DEbe1B",
+      "0x098B716B8Aaf21512996dC57EB0615e2383E2f96"
+    ]
+  },
+  "behavior_defaults": {
+    "_comment": "Demo-grade defaults. Tighten via private/thresholds.json in production.",
+    "maxTxPerMinute":      30,
+    "maxValuePerHourWei":  "10000000000000000000",
+    "burstWindowMs":       5000,
+    "burstCount":          5
+  },
+  "pharos": {
+    "chain_id_allowlist": [688689],
+    "explorer_primary":   "https://pharos-testnet.socialscan.io",
+    "explorer_alternate": "https://testnet.pharosscan.xyz",
+    "rpc_default":        "https://testnet.dplabs-internal.com",
+    "native_token":       "PHRS",
+    "evm_version":        "paris"
+  }
+}

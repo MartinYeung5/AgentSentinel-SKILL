@@ -1,0 +1,127 @@
+{
+  "skill_id": "pharos-agent-sentinel",
+  "name": "Pharos AgentSentinel",
+  "version": "1.0.0",
+  "category": "security",
+  "description": "Pharos-native security and risk assessment for AI-agent actions on Pharos testnet (chainId 688689, native PHRS). Returns ALLOW/WARN/BLOCK verdicts with risk scores, Pharos block-explorer evidence links, and on-chain audit logs.",
+  "author": "agent-sentinel-contributors",
+  "license": "MIT",
+  "homepage": "https://github.com/<your-org>/agent-sentinel",
+  "skill_md": "./SKILL.md",
+  "target_platform": {
+    "platform":   "pharos",
+    "docs":       "https://docs.pharos.xyz",
+    "network":    "pharos-testnet",
+    "chain_id":   688689,
+    "chain_id_aliases": [688689],
+    "native_token": "PHRS",
+    "evm_version": "paris",
+    "explorer_primary":   "https://pharos-testnet.socialscan.io",
+    "explorer_alternate": "https://testnet.pharosscan.xyz",
+    "rpc_default":  "https://testnet.dplabs-internal.com",
+    "rpc_alternates": [
+      "https://atlantic.dplabs-internal.com",
+      "https://devnet.dplabs-internal.com"
+    ]
+  },
+  "interfaces": {
+    "claude_skill": {
+      "spec": "./SKILL.md",
+      "scripts": ["./scripts/check.py"],
+      "references": [
+        "./references/pharos-network.md",
+        "./references/pharos-risk-patterns.md",
+        "./references/modules.md",
+        "./references/onchain.md"
+      ]
+    },
+    "http": {
+      "endpoint": "/v1/invoke",
+      "method": "POST",
+      "default_port": 8787,
+      "openapi_spec": "./openapi.yaml"
+    },
+    "mcp": {
+      "command": "npx",
+      "args": ["tsx", "src/mcp-server.ts"],
+      "tools": ["sentinel_check", "sentinel_verify_chain"]
+    },
+    "function_call": {
+      "schema_path": "./sdk/dist/tool-schema.json",
+      "compatible_with": ["openai", "anthropic", "langchain", "llamaindex"]
+    }
+  },
+  "on_chain": {
+    "network": "pharos-testnet",
+    "chain_id": 688689,
+    "registry_contract":  "0x<fill-after-deploy>",
+    "audit_log_contract": "0x<fill-after-deploy>",
+    "payments_contract":  "0x<fill-after-deploy>",
+    "price_per_call_wei":  "50000000000000000",
+    "price_per_call_human": "0.05 PHRS"
+  },
+  "examples": [
+    {
+      "title": "Block known Pharos-testnet honeypot",
+      "input": {
+        "agent_id": "did:pharos:0xA3f0000000000000000000000000000000000000",
+        "action_type": "tx",
+        "policy_level": "strict",
+        "payload": { "to": "0xDEADBEEFdeadbeefDEADBEEFdeadbeefDEADBEEF" },
+        "chain": { "chain_id": 688689 }
+      },
+      "expected_verdict": "BLOCK"
+    },
+    {
+      "title": "Warn on unlimited approve to Pharos DEX router",
+      "input": {
+        "agent_id": "did:pharos:0xA3f0000000000000000000000000000000000000",
+        "action_type": "tx",
+        "policy_level": "strict",
+        "payload": {
+          "to": "0xPharosRouter",
+          "data": "0x095ea7b30000000000000000000000002222222222222222222222222222222222222222ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        },
+        "chain": { "chain_id": 688689 }
+      },
+      "expected_verdict": "WARN"
+    },
+    {
+      "title": "Warn on unregistered Pharos skill invocation",
+      "input": {
+        "agent_id": "did:pharos:0xA3f0000000000000000000000000000000000000",
+        "action_type": "skill_call",
+        "policy_level": "balanced",
+        "payload": { "target_skill": "did:pharos-skill:UnknownSkill" }
+      },
+      "expected_verdict": "WARN"
+    },
+    {
+      "title": "Allow benign PHRS payment",
+      "input": {
+        "agent_id": "did:pharos:0xA3f0000000000000000000000000000000000000",
+        "action_type": "payment",
+        "policy_level": "balanced",
+        "payload": { "to": "0x1111111111111111111111111111111111111111", "value": "100" },
+        "chain": { "chain_id": 688689 }
+      },
+      "expected_verdict": "ALLOW"
+    },
+    {
+      "title": "Block tx signed for the wrong chain",
+      "input": {
+        "agent_id": "did:pharos:0xA3f0000000000000000000000000000000000000",
+        "action_type": "tx",
+        "policy_level": "permissive",
+        "payload": { "to": "0x1111111111111111111111111111111111111111" },
+        "chain": { "chain_id": 1 }
+      },
+      "expected_verdict": "BLOCK"
+    }
+  ],
+  "tags": [
+    "pharos", "pharos-testnet", "PHRS", "ai-agent", "agent-skill",
+    "claude-skill", "mcp", "security", "risk", "kyt", "compliance",
+    "honeypot", "approval-guard", "prompt-injection", "sanctions"
+  ]
+}

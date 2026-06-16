@@ -127,7 +127,7 @@ Fill in:
 
 ```
 PHAROS_RPC_URL=https://testnet.dplabs-internal.com
-PHAROS_CHAIN_ID=688688
+PHAROS_CHAIN_ID=688689
 DEPLOYER_PRIVATE_KEY=<your_64_hex_key>
 ```
 

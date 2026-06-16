@@ -1,0 +1,11 @@
+{
+  "name": "@pharos/skill-sentinel",
+  "version": "1.0.0",
+  "description": "Pharos AgentSentinel skill SDK",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p ."
+  },
+  "license": "MIT"
+}
