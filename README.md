@@ -194,10 +194,6 @@ Deployer balance: 1.5 native
 { ... }
 ```
 
-> The script aborts with a clear message if `PHAROS_RPC_URL` or
-> `DEPLOYER_PRIVATE_KEY` are missing, so PowerShell users will not see
-> the cryptic "no signers" error from raw Hardhat.
-
 ---
 
 ## 6. Run the Skill Server (HTTP, Pharos Skill ABI)
@@ -309,18 +305,6 @@ await sentinel.guard({ agent_id, action_type: "tx", policy_level: "strict", payl
 
 `guard()` throws if the verdict is `BLOCK`; otherwise returns the full
 response.
-
----
-
-## 12. Troubleshooting (PowerShell)
-
-| Error | Fix |
-|-------|-----|
-| `npx : 無法載入檔案 ... 因為這個系統上已停用指令碼執行` | Run admin PS: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` |
-| `Error HH8: Invalid account: ...` | Ensure `DEPLOYER_PRIVATE_KEY` in `.env` is 64 hex chars (with or without 0x) |
-| `getaddrinfo ENOTFOUND ...` | Wrong `PHAROS_RPC_URL` — verify against Pharos docs |
-| `insufficient funds for intrinsic transaction cost` | Fund the deployer from the testnet faucet |
-| `invalid opcode: PUSH0` | Already fixed: `evmVersion: "paris"` is set in `hardhat.config.ts` |
 
 ---
 
