@@ -8,9 +8,6 @@ It performs four parallel checks — **prompt-layer**, **on-chain**,
 policy-tunable risk score, and writes an immutable verdict to the
 `SentinelAuditLog` contract on Pharos.
 
-> Built for the **Skill-to-Agent Dual Cascade Hackathon**
-> (Pharos × Anvita Flow, Pharos 1st Anniversary).
-
 ---
 
 ## 1. Prerequisites
