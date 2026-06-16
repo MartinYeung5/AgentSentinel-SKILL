@@ -1,0 +1,47 @@
+# ----------------------------------------------------------------------
+# Standard Node / build artefacts
+# ----------------------------------------------------------------------
+node_modules/
+dist/
+build/
+artifacts/
+cache/
+typechain-types/
+*.log
+
+# ----------------------------------------------------------------------
+# Environment & secrets
+# ----------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# ----------------------------------------------------------------------
+# Private security configuration  ⚠ MUST NEVER BE COMMITTED
+# ----------------------------------------------------------------------
+# Block ALL files in private/ ...
+private/**
+
+# ... but allow these public-safe items so the project ships ready-to-run:
+!private/README.md
+!private/loadConfig.ts
+!private/bootstrap.sh
+!private/risklists/
+!private/**/*.example.json
+!private/**/*.example.pem
+
+# Real production files (these patterns must never reach git)
+private/**/*.json
+private/**/*.pem
+!private/**/*.example.json
+!private/**/*.example.pem
+
+# Standalone secrets
+*.audit-key
+*.audit-key.pem
+keys/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
