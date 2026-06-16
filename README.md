@@ -18,9 +18,6 @@ policy-tunable risk score, and writes an immutable verdict to the
 | npm | 9+ |
 | (optional) Git | any |
 
-> Windows users: install Node.js from https://nodejs.org. PowerShell works
-> out of the box — no extra setup required.
-
 ---
 
 ## 2. Repository Layout
@@ -133,10 +130,6 @@ PHAROS_RPC_URL=https://testnet.dplabs-internal.com
 PHAROS_CHAIN_ID=688688
 DEPLOYER_PRIVATE_KEY=<your_64_hex_key>
 ```
-
-> Get the current Pharos testnet RPC + chain id from
-> https://docs.pharosnetwork.xyz . Fund your deployer from the official
-> faucet before deploying.
 
 ### 5.2 Compile
 
